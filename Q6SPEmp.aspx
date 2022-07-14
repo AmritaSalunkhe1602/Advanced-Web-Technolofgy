@@ -81,7 +81,8 @@
                     <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />         
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnRefresh" runat="server" OnClick="btnRefresh_Click" Text="Refresh" />
+&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnRefresh" runat="server" OnClick="btnRefresh_Click" Text="Refresh" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="lblmsg" runat="server"></asp:Label>
                     

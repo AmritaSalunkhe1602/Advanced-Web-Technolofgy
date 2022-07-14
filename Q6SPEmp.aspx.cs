@@ -15,7 +15,7 @@ namespace AWTAsignment
         protected void Page_Load(object sender, EventArgs e)
         {
             con.Open();
-            SqlDataAdapter da = new SqlDataAdapter("select * from SPEmp", con);
+            SqlDataAdapter da = new SqlDataAdapter("exec displaylist ", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             GridView1.DataSource = dt;
@@ -25,7 +25,7 @@ namespace AWTAsignment
         protected void btnSave_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("insert into SPEmp(Name,Department,Salary,DOB) values('" + txtName.Text + "','" + ddlDept.SelectedItem.Text + "','" + Convert.ToInt32(txtSalary.Text) + "','" + Convert.ToDateTime(txtDate.Text) + "')", con);
+            SqlCommand cmd = new SqlCommand("exec InsertProcedure '" + txtName.Text + "','" + ddlDept.SelectedItem.Text + "','" + Convert.ToInt32(txtSalary.Text) + "','" + Convert.ToDateTime(txtDate.Text) + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
             lblmsg.Text = "Record Saved Successfully";
@@ -42,7 +42,7 @@ namespace AWTAsignment
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand cmd1 = new SqlCommand("update SPEmp set Name='" + txtName.Text + "',Department='" + ddlDept.SelectedItem.Text + "',Salary='" + Convert.ToInt32(txtSalary.Text) + "',DOB='" + Convert.ToDateTime(txtDate.Text) + "' where id='" + Convert.ToInt32(ViewState["id"]) + "'", con);
+            SqlCommand cmd1 = new SqlCommand("exec UpdateProcedure '" + Convert.ToInt32(ViewState["id"]) + "','" + txtName.Text + "', '" + ddlDept.SelectedItem.Text + "', '" + Convert.ToInt32(txtSalary.Text) + "', '" + Convert.ToDateTime(txtDate.Text) + "'", con);
             cmd1.ExecuteNonQuery();
             con.Close();
             lblmsg.Text = "Record Updated Successfully";
@@ -51,6 +51,15 @@ namespace AWTAsignment
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
             Response.Redirect("Q6SPEmp.aspx");
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd2 = new SqlCommand("exec DeleteProcedure '" + Convert.ToInt32(ViewState["id"]) + "'", con);
+            cmd2.ExecuteNonQuery();
+            con.Close();
+            lblmsg.Text = "Record Deleted";
         }
     }
 }
